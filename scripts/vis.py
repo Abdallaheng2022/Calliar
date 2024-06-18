@@ -78,7 +78,7 @@ def make_square(im, min_size=256, fill_color=(255, 255, 255)):
     new_im.paste(im, (int((size - x) / 2), int((size - y) / 2)))
     return new_im
 
-def draw_strokes(data, factor=1, svg_filename = 'tmp/sample.svg', stroke_width = 3, 
+def draw_strokes(data, path ,factor=1, stroke_width = 3, 
                 square = False, return_res = False, crop = True):
 
     os.makedirs('tmp', exist_ok=True)
@@ -110,8 +110,8 @@ def draw_strokes(data, factor=1, svg_filename = 'tmp/sample.svg', stroke_width =
     
     dwg.add(dwg.path(p).stroke(the_color,stroke_width).fill("none"))
     dwg.save()
-    cairosvg.svg2png(url="tmp/sample.svg", write_to="tmp/sample.png")
-    img = Image.open('tmp/sample.png')
+    #cairosvg.svg2png(url="tmp/sample.svg", write_to="tmp/sample.png")
+    img = Image.save(path)
     if square:
         img = make_square(img)
     if return_res:
